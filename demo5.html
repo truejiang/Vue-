@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>emit</title>
+</head>
+
+<body>
+    <div class='emit'>
+        <p>{{ total }}</p>
+        <button-counter @increment='incrementTotal'></button-counter>
+        <button-counter @increment='incrementTotal'></button-counter>
+        <button-counter @increment='incrementTotal'></button-counter>        
+    </div>
+    <script type="text/javascript" src='https://cdn.jsdelivr.net/npm/vue'></script>
+    <script>
+        new Vue({
+            el: '.emit',
+            data: {
+                total: 0
+            },
+            components: {
+                'button-counter': {
+                    template: "<button @click='incrementCounter'>{{ counter}}</button>",
+                    /* 在组件的定义中 data 只接受 function*/
+                    data() {
+                        return {
+                            counter: 0
+                        }
+                    },
+                    methods: {
+                        incrementCounter() {
+                            this.counter++;
+                            this.$emit('increment'); //触发increment事件
+                        }
+                    }
+                }
+            },
+            methods: {
+                incrementTotal() {
+                    this.total++;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

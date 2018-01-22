@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot插槽</title>
+</head>
+
+<body>
+    <div id='slot'>
+        <template-slot>            
+            <p slot="start">彼黍离离，彼稷之苗。</p>
+            <!--加个 slot 属性对于 slot 的 name 属性
+                        告诉他在哪个位置使用哪个 slot-->
+            <p slot="end">知我者，谓我心忧，不知我者，谓我何求。悠悠苍天，此何人哉！</p>
+        </template-slot>
+    </div>
+    <script type="text/javascript" src='https://cdn.jsdelivr.net/npm/vue'></script>
+    <script>
+        new Vue({
+            el: '#slot',
+            data: {},
+            components: {
+                'templateSlot': {
+                    template: `<div>
+                                        <h1>黍离</h1>
+                                        <slot name="start"></slot>
+                                        <p>行迈靡靡，中心摇摇。</p>
+                                        <slot name="end"></slot>
+                                    </div>`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
